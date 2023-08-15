@@ -59,7 +59,7 @@ export const create = async (req, res) => {
       message: "Create Product successful",
       products: data,
     });
-  } catch (error) {
+  } catch (error) { 
     return res.status(500).json({
       message: error.message,
     });
