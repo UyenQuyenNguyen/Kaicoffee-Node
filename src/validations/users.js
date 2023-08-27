@@ -1,9 +1,13 @@
 import Joi from "joi"
 
 export const signUpValidator = Joi.object({
-    userName: Joi.string().required().messages({
+    firstName: Joi.string().required().messages({
         "string.empty": "userName không được để trống!",
-        "any.required": "Trường \"userName\" là bắt buộc!" 
+        "any.required": "Trường \"firstName\" là bắt buộc!" 
+    }),
+    lastName: Joi.string().required().messages({
+        "string.empty": "userName không được để trống!",
+        "any.required": "Trường \"lastName\" là bắt buộc!"
     }),
     email: Joi.string().email().required().messages({
         "string.empty": "Email không được để trống!",
@@ -15,10 +19,10 @@ export const signUpValidator = Joi.object({
         "any.required": "Trường \"password\" là bắt buộc!",
         "string.min": "Password phải có ít nhất {#limit} ký tự!"
     }),
-    confirmPassword: Joi.string().required().valid(Joi.ref("password")).messages({
-        "string.empty": "confirmPassword không được để trống!",
-        "any.required": "Trường \"confirmPassword\" là bắt buộc!",
-        "string.min": "confirmPassword phải có ít nhất {#limit} ký tự!",
+    passwordRepeat: Joi.string().required().valid(Joi.ref("password")).messages({
+        "string.empty": "passwordRepeat không được để trống!",
+        "any.required": "Trường \"passwordRepeat\" là bắt buộc!",
+        "string.min": "passwordRepeat phải có ít nhất {#limit} ký tự!",
         "any.only": "Mật khẩu nhập lại không khớp!"
     })
 })

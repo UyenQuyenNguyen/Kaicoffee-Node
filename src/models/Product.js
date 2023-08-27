@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 
 const productSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        require: false
-    },
     name: {
         type: String,
         required: true
@@ -26,7 +22,8 @@ const productSchema = new mongoose.Schema({
         require: true
     }
 }, {
-    versionKey: false, timestamps: true
+    timestamps: true,
+    collection: "Product"
 })
 
 export default mongoose.model('Product', productSchema)

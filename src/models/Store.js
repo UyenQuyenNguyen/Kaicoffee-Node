@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 
 const storeSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        require: false
-    },
     name: {
         type: String,
         required: true
@@ -18,7 +14,8 @@ const storeSchema = new mongoose.Schema({
         required: true
     }
 }, {
-    versionKey: false, timestamps: true
+    timestamps: true,
+    collection: "Store"
 })
 
 export default mongoose.model('Store', storeSchema)

@@ -1,10 +1,13 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    userName: {
+    firstName: {
         type: String,
         required: true,
-        unique: true
+    },
+    lastName: {
+        type: String,
+        required: true,
     },
     email: {
         type:  String,
@@ -20,7 +23,8 @@ const userSchema = new mongoose.Schema({
         default: "member"
     }
 }, {
-    versionKey: false, timestamps: true
+     timestamps: true,
+    collection: "User"
 })
 
 export default mongoose.model('User', userSchema)

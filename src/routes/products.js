@@ -9,7 +9,6 @@ import {
 import { checkPermission } from "../middlewares/checkPermission.js";
 
 const routerProducts = Router();
-
 routerProducts.get("/", getAll);
 routerProducts.get("/:id", getDetail);
 routerProducts.post("/",checkPermission, create);

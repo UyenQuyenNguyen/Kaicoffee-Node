@@ -1,5 +1,5 @@
-import User from "../models/User"
-import { signInValidator, signUpValidator } from "../validations/users"
+import User from "../models/User.js"
+import { signInValidator, signUpValidator } from "../validations/users.js"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
 
@@ -29,7 +29,8 @@ export const signUp = async(req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
         const user = await User.create({
-            userName: req.body.userName,
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
             email: req.body.email,
             password: hashedPassword,
             role: req.body.role
