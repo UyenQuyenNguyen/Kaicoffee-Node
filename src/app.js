@@ -18,7 +18,6 @@ mongoose.connect(`${DB_URI}`, {
   dbName: "KaiCoffee",
 })
   .then(() => {
-    
     console.log("Database connection established!");
     app.use("/", router);
     app.listen(PORT, () => {

@@ -21,7 +21,8 @@ export const signUp = async(req, res) => {
         const userExists  = await User.findOne({ email: req.body.email})
         if(userExists) {
             return res.status(400).json({
-                message: "Email này đã được đăng ký, bạn có muốn đăng nhập không?"
+                status: "error",
+                message: "This email is already registered, do you want to log in?"
             })
            
         }
@@ -38,8 +39,23 @@ export const signUp = async(req, res) => {
         
         user.password = undefined
         return res.status(200).json({
-            message: "Đăng ký tài khoản thành công!",
+            status: "success",
+            message:"Account registration successful!",
             user
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            name: error.name,
+            message: error.message
+        })
+    }
+}
+export const logOut = async (req, res) => {
+    try {
+        return res.status(200).json({
+            status: "success",
+            message: "Logout success",
         })
 
     } catch (error) {
@@ -65,14 +81,16 @@ export const signIn = async (req, res) => {
         const user = await User.findOne({ email })
         if(!user) {
             return res.status(400).json({
-                message: "Bạn chưa đăng ký email này!"
+                status: "error",
+                message: "You have not subscribed to this email!"
             })
         }
 
         const isMatch = await bcrypt.compare(password, user.password)
         if(!isMatch) {
             return res.status(400).json({
-                message: "Mật khẩu không đúng!"
+                status: "error",
+                message:"Incorrect password!"
             })
         }
 
@@ -80,13 +98,15 @@ export const signIn = async (req, res) => {
 
         user.password = undefined
         return res.status(200).json({
-            message: "Đăng nhập tài khoản thành công!",
+            status: "success",
+            message:"Account login successful!",
             accessToken,
             user
         })
 
     } catch (error) {
         return res.status(500).json({
+            status: "error",
             message: error.message
         })
     }

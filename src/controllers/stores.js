@@ -96,7 +96,7 @@ export const update = async (req, res) => {
 export const remove = async (req, res) => {
     try {
         const data = await Store.findByIdAndDelete(req.params.id)
-
+        console.log(data);
         if (!data) {
             return res.status(404).json({
                 message: "Delete store not successful",

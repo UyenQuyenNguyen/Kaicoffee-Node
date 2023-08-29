@@ -23,7 +23,8 @@ const productSchema = new mongoose.Schema({
     }
 }, {
     timestamps: true,
-    collection: "Product"
+    collection: "Product",
+    _id: true
 })
 
 export default mongoose.model('Product', productSchema)

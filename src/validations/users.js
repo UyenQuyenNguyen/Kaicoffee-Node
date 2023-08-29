@@ -2,40 +2,40 @@ import Joi from "joi"
 
 export const signUpValidator = Joi.object({
     firstName: Joi.string().required().messages({
-        "string.empty": "userName không được để trống!",
-        "any.required": "Trường \"firstName\" là bắt buộc!" 
+        "string.empty": "First Name cannot be empty!",
+        "any.required": "First Name field is required!" 
     }),
     lastName: Joi.string().required().messages({
-        "string.empty": "userName không được để trống!",
-        "any.required": "Trường \"lastName\" là bắt buộc!"
+        "string.empty": "Last Name cannot be empty!",
+        "any.required": "Last Name field is required!"
     }),
     email: Joi.string().email().required().messages({
-        "string.empty": "Email không được để trống!",
-        "any.required": "Trường \"email\" là bắt buộc!",
-        "string.email": "Email không đúng định dạng!"
+        "string.empty": "Email cannot be empty!",
+        "any.required": "Email field is required!",
+        "string.email": "Email invalidate!"
     }),
     password: Joi.string().required().min(6).messages({
-        "string.empty": "Password không được để trống!",
-        "any.required": "Trường \"password\" là bắt buộc!",
+        "string.empty": "Password cannot be empty!",
+        "any.required": "Password field is required!",
         "string.min": "Password phải có ít nhất {#limit} ký tự!"
     }),
     passwordRepeat: Joi.string().required().valid(Joi.ref("password")).messages({
-        "string.empty": "passwordRepeat không được để trống!",
-        "any.required": "Trường \"passwordRepeat\" là bắt buộc!",
-        "string.min": "passwordRepeat phải có ít nhất {#limit} ký tự!",
-        "any.only": "Mật khẩu nhập lại không khớp!"
+        "string.empty": "Password re-entered cannot be empty!",
+        "any.required": "Password re-entered field is required!",
+        "string.min": "Password re-entered must be at least { #limit} characters!",
+        "any.only":"Password re-entered does not match!"
     })
 })
 
 export const signInValidator = Joi.object({
     email: Joi.string().email().required().messages({
-        "string.empty": "Email không được để trống!",
-        "any.required": "Trường \"email\" là bắt buộc!",
-        "string.email": "Email không đúng định dạng!"
+        "string.empty":"Email cannot be empty!",
+        "any.required": "Email field is required!",
+        "string.email": "Email invalidate!"
     }),
     password: Joi.string().required().min(6).messages({
-        "string.empty": "Password không được để trống!",
-        "any.required": "Trường \"password\" là bắt buộc!",
-        "string.min": "Password phải có ít nhất {#limit} ký tự!"
+        "string.empty": "Password cannot be empty!",
+        "any.required": "Password field is required!",
+        "string.min": "Password must be at least {#limit} characters!"
     })
 })

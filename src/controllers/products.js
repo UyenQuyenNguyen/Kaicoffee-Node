@@ -4,7 +4,6 @@ import Product from "../models/Product.js";
 dotenv.config();
 
 export const getAll = async (req, res) => {
-  console.log('svd');
   try {
     const data = await Product.find({})
     if (data.length === 0) {
@@ -12,7 +11,6 @@ export const getAll = async (req, res) => {
         message: "Products not found",
       });
     }
-    console.log("Hello");
     return res.status(200).json({
       message: "Products successfully",
       products: data,
@@ -57,6 +55,9 @@ export const create = async (req, res) => {
         message: "Create Product not successful",
       });
     }
+
+    console.log(data);
+    
     return res.status(200).json({
       message: "Create Product successful",
       products: data,
